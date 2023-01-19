@@ -13,3 +13,9 @@ from juegos;
 select Nombre
 from juegos
 where PlatformLinux='true' and PlatformMac='false' and PlatformWindows='false'
+
+--4. Lista todos los juegos de rol, ordenador por nota.
+Select nombre, Genre, Metacritic
+from juegos
+where genre like '%RPG%'
+order by Metacritic desc
