@@ -5,7 +5,16 @@ group by Genre
 order by MAX(Metacritic) desc, MIN(Metacritic);
 
 -- 17 Usando LIMIT, devuelve el top 10 de juegos con mayor puntuación del 2012.
-select distinct top 10 Genre,MAX(Metacritic) 
+select distinct top 10 Nombre,MAX(Metacritic) as "Puntuación Maxima"
 from juegos
 where ReleaseDate = '2012'
-group by Genre;
+group by Nombre
+order by MAX(Metacritic) desc;
+
+-- 18 Usando LIMIT, devuelve el top 10 de juegos más nuevos de género single player.
+select distinct top 10 Nombre, ReleaseDate 
+from juegos
+where Genre not like '%MultiPlayer%' 
+group by Nombre, ReleaseDate
+order by ReleaseDate desc;
+
