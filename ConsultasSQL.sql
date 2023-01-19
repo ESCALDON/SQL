@@ -19,8 +19,3 @@ Select nombre, Genre, Metacritic
 from juegos
 where genre like '%RPG%'
 order by Metacritic desc
-
---5. Lista todos aquellos juegos que puedan ser jugados en Español pero no en Frances
-select nombre
-from juegos
-where SupportedLanguages !='french' 
