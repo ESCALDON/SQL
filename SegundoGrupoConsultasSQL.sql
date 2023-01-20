@@ -18,3 +18,35 @@ where Genre not like '%MultiPlayer%'
 group by Nombre, ReleaseDate
 order by ReleaseDate desc;
 
+-- 19 Devuelve la media de nota de todos aquellos juegos que sean para mayores de 18 años.
+select distinct AVG(Metacritic) as Media
+from juegos
+where RequiredAge >= 18;
+
+-- 20 ¿Cuántos juegos hay asociados a cada tipo (mayor de 18, de 17…)?
+select count(Nombre) as "ContadorJuegos", RequiredAge from juegos
+GROUP BY RequiredAge
+order by RequiredAge
+
+-- 21 Devuelve todos aquellos años en los que haya menos de 300 juegos.
+SELECT Nombre from juegos 
+GROUP BY ReleaseDate
+ORDER BY ReleaseDate
+
+-- 22.Devuelve todos los juegos que estén para Mac pero no para Windows.
+
+-- 23.	Devuelve todos los juegos donde su precio final sea mayor a su precio inicial.
+
+-- 24.	Devuelve todos los juegos que no estén valorados en dólares.
+
+-- 25.	Devuelve todos los juegos que tengan una mayor nota que 0, pero que hayan suspendido.
+
+-- 26.	Devuelve el top 15 de juegos con mayor número de DLC.
+
+-- 27.	Devuelve la información de los juegos que sólo se puedan jugar en Inglés.
+
+-- 28.	Devuelve el nombre(en minúscula) y la web (en mayúscula) de los juegos de acción o casuales.
+
+-- 29.	¿Cuál es el juego indie con mayor nota? 
+
+-- 30.	¿Y con menor nota?
