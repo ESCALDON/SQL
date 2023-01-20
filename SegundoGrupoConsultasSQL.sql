@@ -54,6 +54,8 @@ where PriceFinal != PriceInitial
 
 
 -- 24.	Devuelve todos los juegos que no estén valorados en dólares.
+Select Nombre, PriceCurrency from juegos
+where PriceCurrency != 'USD'
 
 -- 25.	Devuelve todos los juegos que tengan una mayor nota que 0, pero que hayan suspendido.
 
