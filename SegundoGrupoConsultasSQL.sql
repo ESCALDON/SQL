@@ -29,11 +29,15 @@ GROUP BY RequiredAge
 order by RequiredAge
 
 -- 21 Devuelve todos aquellos años en los que haya menos de 300 juegos.
-SELECT Nombre from juegos 
-GROUP BY ReleaseDate
-ORDER BY ReleaseDate
+SELECT ReleaseDate, count(Nombre) from juegos
+GROUP BY ReleaseDate 
+having COUNT(Nombre) < '300'
+
 
 -- 22.Devuelve todos los juegos que estén para Mac pero no para Windows.
+SELECT Nombre, PlatformWindows, PlatformMac from juegos
+Where PlatformWindows like 'True' and PlatformMac like 'false'
+Group BY PlatformWindows, Nombre, PlatformMac
 
 -- 23.	Devuelve todos los juegos donde su precio final sea mayor a su precio inicial.
 
@@ -50,3 +54,4 @@ ORDER BY ReleaseDate
 -- 29.	¿Cuál es el juego indie con mayor nota? 
 
 -- 30.	¿Y con menor nota?
+
