@@ -40,6 +40,18 @@ Where PlatformWindows like 'True' and PlatformMac like 'false'
 Group BY PlatformWindows, Nombre, PlatformMac
 
 -- 23.	Devuelve todos los juegos donde su precio final sea mayor a su precio inicial.
+-- DONDE SEA MAYOR ES: (NO ME DA NINGUN RESULTADO Y EN LAS OTRAS CONSULTAS SI)
+SELECT Nombre, PriceInitial, PriceFinal from juegos
+where PriceFinal > PriceInitial
+
+-- DONDE SEA MENOR ES:
+SELECT Nombre, PriceInitial, PriceFinal from juegos
+where PriceFinal < PriceInitial
+
+-- DONDE NO SEA IGUAL ES:
+SELECT Nombre, PriceInitial, PriceFinal from juegos
+where PriceFinal != PriceInitial
+
 
 -- 24.	Devuelve todos los juegos que no estén valorados en dólares.
 
