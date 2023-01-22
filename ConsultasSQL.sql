@@ -43,3 +43,8 @@ where nombre like '%N' or nombre like '%O'
 select nombre
 from juegos
 where ControllerSupport='true' and nombre like 'A%'
+
+--10. Devuelve todos aquellos juegos que estén entre el 2000 y el 2010.
+select nombre
+from juegos
+where ReleaseDate between '2000' and '2010'
