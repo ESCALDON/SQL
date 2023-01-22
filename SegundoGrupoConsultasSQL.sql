@@ -58,6 +58,8 @@ Select Nombre, PriceCurrency from juegos
 where PriceCurrency != 'USD'
 
 -- 25.	Devuelve todos los juegos que tengan una mayor nota que 0, pero que hayan suspendido.
+SELECT Nombre, Metacritic FROM juegos 
+where Metacritic > '0' and Metacritic < '50'; 
 
 -- 26.	Devuelve el top 15 de juegos con mayor número de DLC.
 
