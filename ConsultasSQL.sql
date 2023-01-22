@@ -65,6 +65,12 @@ from juegos
 group by Category
 
 --14. ¿Cuántos juegos se han sacado en cada año?
+select count (*) as NumeroDeJuegos, ReleaseDate, AVG(Metacritic)
+from juegos
+group by ReleaseDate
+
+--15. En base a la consulta anterior, devuelve aquellos años en los que la media de puntuación esté entre un 6 y un 8,
 select count (*) as NumeroDeJuegos, ReleaseDate
 from juegos
 group by ReleaseDate
+Having AVG(Metacritic) between 6 and 8
