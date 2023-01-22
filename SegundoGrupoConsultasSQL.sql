@@ -79,4 +79,5 @@ SELECT top 1 Nombre, Genre, Metacritic FROM juegos WHERE	Genre like '%Indie'
 ORDER BY Metacritic desc;
 
 -- 30.	¿Y con menor nota?
-
+SELECT TOP 1 Nombre, Genre, Metacritic FROM juegos WHERE	Genre like '%Indie'
+ORDER BY Metacritic ASC;
