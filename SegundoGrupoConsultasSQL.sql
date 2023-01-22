@@ -71,6 +71,8 @@ select Nombre, SupportedLanguages From juegos
 where SupportedLanguages like '%English';
 
 -- 28.	Devuelve el nombre(en minúscula) y la web (en mayúscula) de los juegos de acción o casuales.
+SELECT LOWER(Nombre) as Nombre ,LOWER(Website)as Web, Genre FROM juegos 
+WHERE Genre like '%Actio' or Genre like '%Casual';
 
 -- 29.	¿Cuál es el juego indie con mayor nota? 
 
