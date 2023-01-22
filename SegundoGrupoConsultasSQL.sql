@@ -67,6 +67,8 @@ group by DLCCount, Nombre
 order by DLCCount DESC;
 
 -- 27.	Devuelve la información de los juegos que sólo se puedan jugar en Inglés.
+select Nombre, SupportedLanguages From juegos 
+where SupportedLanguages like '%English';
 
 -- 28.	Devuelve el nombre(en minúscula) y la web (en mayúscula) de los juegos de acción o casuales.
 
