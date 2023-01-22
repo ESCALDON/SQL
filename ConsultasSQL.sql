@@ -63,3 +63,8 @@ where DeveloperCount > 3 and genre like '%sports%'
 select count(*) as NumeroDeJuegos, Category
 from juegos
 group by Category
+
+--14. ¿Cuántos juegos se han sacado en cada año?
+select count (*) as NumeroDeJuegos, ReleaseDate
+from juegos
+group by ReleaseDate
