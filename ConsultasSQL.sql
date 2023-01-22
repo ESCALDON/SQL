@@ -58,3 +58,8 @@ where nombre like '%Final Fantasy%'
 select nombre
 from juegos
 where DeveloperCount > 3 and genre like '%sports%'
+
+--13. ¿Cuántos juegos hay asociados a cada categoría?
+select count(*) as NumeroDeJuegos, Category
+from juegos
+group by Category
