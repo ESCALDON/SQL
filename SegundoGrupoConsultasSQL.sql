@@ -75,6 +75,8 @@ SELECT LOWER(Nombre) as Nombre ,LOWER(Website)as Web, Genre FROM juegos
 WHERE Genre like '%Actio' or Genre like '%Casual';
 
 -- 29.	¿Cuál es el juego indie con mayor nota? 
+SELECT top 1 Nombre, Genre, Metacritic FROM juegos WHERE	Genre like '%Indie'
+ORDER BY Metacritic desc;
 
 -- 30.	¿Y con menor nota?
 
