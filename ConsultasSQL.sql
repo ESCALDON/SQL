@@ -48,3 +48,8 @@ where ControllerSupport='true' and nombre like 'A%'
 select nombre
 from juegos
 where ReleaseDate between '2000' and '2010'
+
+--11. Devuelve todos los juegos que sean de la saga Final Fantasy.
+select nombre
+from juegos
+where nombre like '%Final Fantasy%'
