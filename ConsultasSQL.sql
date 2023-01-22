@@ -53,3 +53,8 @@ where ReleaseDate between '2000' and '2010'
 select nombre
 from juegos
 where nombre like '%Final Fantasy%'
+
+--12. Devuelve todos los juegos que sean de deportes y haya trabajado más de 3 desarrolladores.
+select nombre
+from juegos
+where DeveloperCount > 3 and genre like '%sports%'
