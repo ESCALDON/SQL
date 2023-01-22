@@ -62,6 +62,9 @@ SELECT Nombre, Metacritic FROM juegos
 where Metacritic > '0' and Metacritic < '50'; 
 
 -- 26.	Devuelve el top 15 de juegos con mayor número de DLC.
+SELECT TOP 15 Nombre, DLCCount FROM Juegos
+group by DLCCount, Nombre
+order by DLCCount DESC;
 
 -- 27.	Devuelve la información de los juegos que sólo se puedan jugar en Inglés.
 
