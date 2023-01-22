@@ -30,7 +30,11 @@ select Nombre, PriceInitial, PriceFinal, PriceInitial-PriceFinal
 from juegos
 
 --7¿Cuántos juegos hay del siglo pasado?
---set dateformat dmy
 select nombre
 from juegos
 where ReleaseDate between '1900' and '1999'
+
+--8 Devuelve todos los juegos que terminen o en N o en O.
+select nombre
+from juegos
+where nombre like '%N' or nombre like '%O'
