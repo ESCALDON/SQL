@@ -24,3 +24,4 @@ order by Metacritic desc
 select nombre
 from juegos
 where SupportedLanguages !='french' 
+
