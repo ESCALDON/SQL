@@ -1,40 +1,116 @@
--- 16 ¿Cuál es la máxima, mínima y puntuación mínima por género?
+use steam
+go
+
+--1. Lista todas las columnas de la tabla.
+select *
+from juegos;
+
+--2. Lista todos los diferentes gÃ©neros, eliminando duplicados. Se usa distinct para eliminar los duplicados en sql
+Select distinct genre
+from juegos;
+
+--3. Lista Ãºnicamente aquellos juegos que puedan ser jugados Ãºnicamente en Linux
+select Nombre
+from juegos
+where PlatformLinux='true' and PlatformMac='false' and PlatformWindows='false'
+
+--4. Lista todos los juegos de rol, ordenador por nota.
+Select nombre, Genre, Metacritic
+from juegos
+where genre like '%RPG%'
+order by Metacritic desc
+
+--5. Lista todos aquellos juegos que puedan ser jugados en EspaÃ±ol pero no en Frances
+select nombre
+from juegos
+where SupportedLanguages not like '%French%' and SupportedLanguages like '%Spanish%'
+
+--6. Lista el nombre del juego, su precio inicial, su precio final y la diferencia entre ambos en una nueva columna.
+select Nombre, PriceInitial, PriceFinal, PriceInitial-PriceFinal
+from juegos
+
+--7. Â¿CuÃ¡ntos juegos hay del siglo pasado?
+select count(*) as NumeroDeJuegos
+from juegos
+where ReleaseDate between '1900' and '1999'
+
+--8. Devuelve todos los juegos que terminen o en N o en O.
+select nombre
+from juegos
+where nombre like '%N' or nombre like '%O'
+
+--9. Devuelve todos los juegos que empiecen por A y que se puedan jugar con mando.
+select nombre
+from juegos
+where ControllerSupport='true' and nombre like 'A%'
+
+--10. Devuelve todos aquellos juegos que estÃ©n entre el 2000 y el 2010.
+select nombre
+from juegos
+where ReleaseDate between '2000' and '2010'
+
+--11. Devuelve todos los juegos que sean de la saga Final Fantasy.
+select nombre
+from juegos
+where nombre like '%Final Fantasy%'
+
+--12. Devuelve todos los juegos que sean de deportes y haya trabajado mÃ¡s de 3 desarrolladores.
+select nombre
+from juegos
+where DeveloperCount > 3 and genre like '%sports%'
+
+--13. Â¿CuÃ¡ntos juegos hay asociados a cada categorÃ­a?
+select count(*) as NumeroDeJuegos, Category
+from juegos
+group by Category
+
+--14. Â¿CuÃ¡ntos juegos se han sacado en cada aÃ±o?
+select count (*) as NumeroDeJuegos, ReleaseDate, AVG(Metacritic)
+from juegos
+group by ReleaseDate
+
+--15. En base a la consulta anterior, devuelve aquellos aÃ±os en los que la media de puntuaciÃ³n estÃ© entre un 6 y un 8,
+select count (*) as NumeroDeJuegos, ReleaseDate
+from juegos
+group by ReleaseDate
+Having AVG(Metacritic) between 6 and 8
+-- 16 Â¿CuÃ¡l es la mÃ¡xima, mÃ­nima y puntuaciÃ³n mÃ­nima por gÃ©nero?
 select distinct Genre,MAX(Metacritic) as "Puntuacion Maxima", MIN(Metacritic) as "Puntuacion Minima" 
 from juegos
 group by Genre
 order by MAX(Metacritic) desc, MIN(Metacritic);
 
--- 17 Usando LIMIT, devuelve el top 10 de juegos con mayor puntuación del 2012.
-select distinct top 10 Nombre,MAX(Metacritic) as "Puntuación Maxima"
+-- 17 Usando LIMIT, devuelve el top 10 de juegos con mayor puntuaciÃ³n del 2012.
+select distinct top 10 Nombre,MAX(Metacritic) as "PuntuaciÃ³n Maxima"
 from juegos
 where ReleaseDate = '2012'
 group by Nombre
 order by MAX(Metacritic) desc;
 
--- 18 Usando LIMIT, devuelve el top 10 de juegos más nuevos de género single player.
+-- 18 Usando LIMIT, devuelve el top 10 de juegos mÃ¡s nuevos de gÃ©nero single player.
 select distinct top 10 Nombre, ReleaseDate 
 from juegos
 where Genre not like '%MultiPlayer%' 
 group by Nombre, ReleaseDate
 order by ReleaseDate desc;
 
--- 19 Devuelve la media de nota de todos aquellos juegos que sean para mayores de 18 años.
+-- 19 Devuelve la media de nota de todos aquellos juegos que sean para mayores de 18 aÃ±os.
 select distinct AVG(Metacritic) as Media
 from juegos
 where RequiredAge >= 18;
 
--- 20 ¿Cuántos juegos hay asociados a cada tipo (mayor de 18, de 17…)?
+-- 20 Â¿CuÃ¡ntos juegos hay asociados a cada tipo (mayor de 18, de 17Â…)?
 select count(Nombre) as "ContadorJuegos", RequiredAge from juegos
 GROUP BY RequiredAge
 order by RequiredAge
 
--- 21 Devuelve todos aquellos años en los que haya menos de 300 juegos.
+-- 21 Devuelve todos aquellos aÃ±os en los que haya menos de 300 juegos.
 SELECT ReleaseDate, count(Nombre) from juegos
 GROUP BY ReleaseDate 
 having COUNT(Nombre) < '300'
 
 
--- 22.Devuelve todos los juegos que estén para Mac pero no para Windows.
+-- 22.Devuelve todos los juegos que estÃ©n para Mac pero no para Windows.
 SELECT Nombre, PlatformWindows, PlatformMac from juegos
 Where PlatformWindows like 'True' and PlatformMac like 'false'
 Group BY PlatformWindows, Nombre, PlatformMac
@@ -53,7 +129,7 @@ SELECT Nombre, PriceInitial, PriceFinal from juegos
 where PriceFinal != PriceInitial
 
 
--- 24.	Devuelve todos los juegos que no estén valorados en dólares.
+-- 24.	Devuelve todos los juegos que no estÃ©n valorados en dÃ³lares.
 Select Nombre, PriceCurrency from juegos
 where PriceCurrency != 'USD'
 
@@ -61,23 +137,23 @@ where PriceCurrency != 'USD'
 SELECT Nombre, Metacritic FROM juegos 
 where Metacritic > '0' and Metacritic < '50'; 
 
--- 26.	Devuelve el top 15 de juegos con mayor número de DLC.
+-- 26.	Devuelve el top 15 de juegos con mayor nÃºmero de DLC.
 SELECT TOP 15 Nombre, DLCCount FROM Juegos
 group by DLCCount, Nombre
 order by DLCCount DESC;
 
--- 27.	Devuelve la información de los juegos que sólo se puedan jugar en Inglés.
+-- 27.	Devuelve la informaciÃ³n de los juegos que sÃ³lo se puedan jugar en InglÃ©s.
 select Nombre, SupportedLanguages From juegos 
 where SupportedLanguages like '%English';
 
--- 28.	Devuelve el nombre(en minúscula) y la web (en mayúscula) de los juegos de acción o casuales.
+-- 28.	Devuelve el nombre(en minÃºscula) y la web (en mayÃºscula) de los juegos de acciÃ³n o casuales.
 SELECT LOWER(Nombre) as Nombre ,LOWER(Website)as Web, Genre FROM juegos 
 WHERE Genre like '%Actio' or Genre like '%Casual';
 
--- 29.	¿Cuál es el juego indie con mayor nota? 
+-- 29.	Â¿CuÃ¡l es el juego indie con mayor nota? 
 SELECT top 1 Nombre, Genre, Metacritic FROM juegos WHERE	Genre like '%Indie'
 ORDER BY Metacritic desc;
 
--- 30.	¿Y con menor nota?
+-- 30.	Â¿Y con menor nota?
 SELECT TOP 1 Nombre, Genre, Metacritic FROM juegos WHERE	Genre like '%Indie'
 ORDER BY Metacritic ASC;
